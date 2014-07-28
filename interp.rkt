@@ -63,35 +63,4 @@
 (define (eval. exp)
   (eval1. exp env0))
 
-(eval. '(quote x))
-
-(eval. '(atom? 'a))
-(eval. '(atom? '(a b c)))
-
-(eval. '(eq? 'a 'a))
-(eval. '(eq? 'a 'b))
-(eval. '(eq? '() '()))
-
-(eval. '(car '(a b c)))
-(eval. '(cdr '(a b c)))
-(eval. '(cons 'a '(b c)))
-
-(eval. '(cond [(eq? 'a 'b) 'first]
-              [(atom? 'a) 'second]))
-
-(eval. '((lambda (x) (cons x '(b))) 'a))
-(eval. '((lambda (x y z) (cons (cons x y) z)) 'a '(b) '(c)))
-
-(eval. '((label firstatom (lambda (x)
-                            (cond ((atom? x) x)
-                                  (#t (firstatom (car x))))))
-         '((a b) (c d))))
-(eval. '((label length (lambda (x)
-                         (cond [(eq? x '()) 0]
-                               [#t (+ 1 (length (cdr x)))])))
-         '(1 2 3 4 5)))
-
-(eval. '((defun length (x)
-           (cond [(eq? x '()) 0]
-                 [#t (+ 1 (length (cdr x)))]))
-         '(1 2 3)))
+(provide eval.)
